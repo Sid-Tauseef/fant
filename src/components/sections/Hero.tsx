@@ -11,12 +11,11 @@ const Hero = () => {
   
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Content */}
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="section-container relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-sidify-light leading-tight mb-4 animate-fade-in">
+          <h1 className="text-gradient mb-4 animate-fade-in">
             Empowering Your Digital Vision—
-            <span className="text-sidify-accent">From Concept to Code.</span>
+            <span className="text-sidify-accent block mt-2">From Concept to Code.</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-sidify-light/90 mb-8 animate-fade-in">

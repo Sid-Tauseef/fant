@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Code, Smartphone, Layout, Database } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -61,11 +62,11 @@ const Services = () => {
   };
   
   return (
-    <section id="services" className="py-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="services">
+      <div className="section-container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-sidify-light mb-4">Our Services</h2>
-          <p className="text-lg text-sidify-light/80 max-w-2xl mx-auto">
+          <h2 className="text-gradient mb-4">Our Services</h2>
+          <p className="text-sidify-light/80 max-w-2xl mx-auto">
             We deliver end-to-end solutions that transform ideas into powerful digital experiences.
           </p>
         </div>
@@ -74,7 +75,7 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className={`overflow-hidden transition-all duration-300 backdrop-blur-lg bg-white/5 border-white/10 ${
+              className={`card-glass transition-all duration-300 ${
                 expandedCard === index 
                   ? 'shadow-lg transform scale-[1.02]' 
                   : 'hover:shadow-md cursor-pointer'

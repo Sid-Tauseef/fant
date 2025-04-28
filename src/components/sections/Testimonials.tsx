@@ -1,4 +1,3 @@
-
 const testimonials = [
   {
     content: "Sidify Solutions transformed our outdated website into a modern, responsive platform that our customers love. Their attention to detail and technical expertise exceeded our expectations.",
@@ -26,11 +25,11 @@ const clientLogos = [
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="testimonials">
+      <div className="section-container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-sidify-primary mb-4">Client Testimonials</h2>
-          <p className="text-lg text-sidify-secondary max-w-2xl mx-auto">
+          <h2 className="text-gradient mb-4">Client Testimonials</h2>
+          <p className="text-sidify-light/80 max-w-2xl mx-auto">
             Don't just take our word for it — see what our clients have to say about working with us.
           </p>
         </div>
@@ -39,7 +38,7 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="bg-sidify-light rounded-xl p-6 shadow-md hover:shadow-lg transition-all"
+              className="card-glass p-6 transition-all hover:scale-[1.02] duration-300"
             >
               <div className="mb-4">
                 {[...Array(5)].map((_, i) => (
