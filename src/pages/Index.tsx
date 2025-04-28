@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/sections/Hero';
@@ -11,11 +10,9 @@ import Footer from '@/components/layout/Footer';
 import ScrollToVisible from '@/components/ScrollToVisible';
 
 const Index = () => {
-  // Update document title
   useEffect(() => {
     document.title = "Sidify Solutions - Web & Mobile App Development";
     
-    // Initialize scroll animation
     const updateScroll = () => {
       const elements = document.querySelectorAll('.animate-on-scroll:not(.visible)');
       
@@ -31,10 +28,8 @@ const Index = () => {
       });
     };
     
-    // Run once on mount
     updateScroll();
     
-    // Add scroll listener
     window.addEventListener('scroll', updateScroll);
     
     return () => {
@@ -43,30 +38,42 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <div className="fixed inset-0 bg-gradient-hero -z-10"></div>
+      
+      <div className="fixed blur-pattern top-[20%] left-[10%] opacity-70 -z-10"></div>
+      <div className="fixed blur-pattern bottom-[10%] right-[5%] opacity-50 -z-10"></div>
+      <div className="fixed blur-pattern bottom-[40%] left-[30%] opacity-20 -z-10"></div>
+      
+      <div className="fixed top-20 right-10 w-64 h-64 rounded-full border border-sidify-accent/20 animate-pulse -z-10"></div>
+      <div className="fixed bottom-20 left-10 w-40 h-40 rounded-full border border-sidify-accent/30 -z-10"></div>
+      <div className="fixed top-1/3 left-1/4 w-20 h-20 rounded-full bg-sidify-accent/10 -z-10"></div>
+      
       <Navbar />
       
-      <Hero />
-      
-      <ScrollToVisible>
-        <Services />
-      </ScrollToVisible>
-      
-      <ScrollToVisible>
-        <Portfolio />
-      </ScrollToVisible>
-      
-      <ScrollToVisible>
-        <Testimonials />
-      </ScrollToVisible>
-      
-      <ScrollToVisible>
-        <About />
-      </ScrollToVisible>
-      
-      <ScrollToVisible>
-        <Contact />
-      </ScrollToVisible>
+      <main className="relative">
+        <Hero />
+        
+        <ScrollToVisible>
+          <Services />
+        </ScrollToVisible>
+        
+        <ScrollToVisible>
+          <Portfolio />
+        </ScrollToVisible>
+        
+        <ScrollToVisible>
+          <Testimonials />
+        </ScrollToVisible>
+        
+        <ScrollToVisible>
+          <About />
+        </ScrollToVisible>
+        
+        <ScrollToVisible>
+          <Contact />
+        </ScrollToVisible>
+      </main>
       
       <Footer />
     </div>

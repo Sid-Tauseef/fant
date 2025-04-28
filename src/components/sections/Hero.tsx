@@ -11,19 +11,6 @@ const Hero = () => {
   
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-hero"></div>
-      
-      {/* Blur patterns */}
-      <div className="blur-pattern top-[20%] left-[10%] opacity-70"></div>
-      <div className="blur-pattern bottom-[10%] right-[5%] opacity-50"></div>
-      <div className="blur-pattern bottom-[40%] left-[30%] opacity-20"></div>
-      
-      {/* Abstract shapes */}
-      <div className="absolute top-20 right-10 w-64 h-64 rounded-full border border-sidify-accent/20 animate-pulse"></div>
-      <div className="absolute bottom-20 left-10 w-40 h-40 rounded-full border border-sidify-accent/30"></div>
-      <div className="absolute top-1/3 left-1/4 w-20 h-20 rounded-full bg-sidify-accent/10"></div>
-      
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">

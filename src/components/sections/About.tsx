@@ -1,4 +1,3 @@
-
 const teamMembers = [
   {
     name: "Alex Thompson",
@@ -28,11 +27,11 @@ const teamMembers = [
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-sidify-primary text-white">
+    <section id="about" className="py-20">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Sidify Solutions</h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-sidify-light mb-4">About Sidify Solutions</h2>
+          <p className="text-lg text-sidify-light/80 max-w-2xl mx-auto">
             We're a team of passionate technologists dedicated to building exceptional digital experiences.
           </p>
         </div>
@@ -40,19 +39,19 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h3 className="text-2xl font-bold mb-6 text-sidify-accent">Our Story</h3>
-            <p className="text-white/80 mb-4">
+            <p className="text-sidify-light/80 mb-4">
               Founded in 2018, Sidify Solutions began with a simple mission: to help businesses unlock their digital potential through thoughtfully crafted technology solutions.
             </p>
-            <p className="text-white/80 mb-4">
+            <p className="text-sidify-light/80 mb-4">
               We believe that great software is born at the intersection of technical excellence and human-centered design. Our approach combines cutting-edge development practices with a deep understanding of user needs.
             </p>
-            <p className="text-white/80">
+            <p className="text-sidify-light/80">
               Today, we're proud to partner with clients ranging from ambitious startups to established enterprises, helping them achieve their goals through custom software development.
             </p>
           </div>
           
           <div className="relative">
-            <div className="bg-sidify-accent/20 rounded-lg p-8">
+            <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-6 text-sidify-accent">Our Values</h3>
               
               <div className="space-y-4">
@@ -62,7 +61,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Quality Over Quantity</h4>
-                    <p className="text-white/80">We prioritize crafting excellent solutions rather than rushing through projects.</p>
+                    <p className="text-sidify-light/80">We prioritize crafting excellent solutions rather than rushing through projects.</p>
                   </div>
                 </div>
                 
@@ -72,7 +71,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">User-Centered Approach</h4>
-                    <p className="text-white/80">Every decision we make is guided by understanding the needs of end-users.</p>
+                    <p className="text-sidify-light/80">Every decision we make is guided by understanding the needs of end-users.</p>
                   </div>
                 </div>
                 
@@ -82,7 +81,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Continuous Innovation</h4>
-                    <p className="text-white/80">We stay at the forefront of technology to deliver forward-thinking solutions.</p>
+                    <p className="text-sidify-light/80">We stay at the forefront of technology to deliver forward-thinking solutions.</p>
                   </div>
                 </div>
               </div>
