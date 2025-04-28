@@ -25,11 +25,11 @@ const clientLogos = [
 
 const Testimonials = () => {
   return (
-    <section id="testimonials">
+    <section id="testimonials" className="relative py-20 overflow-hidden">
       <div className="section-container">
         <div className="text-center mb-12">
           <h2 className="text-gradient mb-4">Client Testimonials</h2>
-          <p className="text-sidify-light/80 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Don't just take our word for it — see what our clients have to say about working with us.
           </p>
         </div>
@@ -46,7 +46,7 @@ const Testimonials = () => {
                 ))}
               </div>
               
-              <blockquote className="mb-6 text-sidify-secondary italic">
+              <blockquote className="mb-6 text-gray-100 italic text-lg leading-relaxed">
                 "{testimonial.content}"
               </blockquote>
               
@@ -59,8 +59,8 @@ const Testimonials = () => {
                   />
                 </div>
                 <div>
-                  <p className="font-semibold text-sidify-primary">{testimonial.author}</p>
-                  <p className="text-sm text-sidify-secondary">{testimonial.position}</p>
+                  <p className="font-semibold text-white">{testimonial.author}</p>
+                  <p className="text-sm text-gray-300">{testimonial.position}</p>
                 </div>
               </div>
             </div>
@@ -68,12 +68,14 @@ const Testimonials = () => {
         </div>
         
         <div className="mt-16">
-          <h3 className="text-center text-lg font-medium text-sidify-secondary mb-8">Trusted by leading companies</h3>
+          <h3 className="text-center text-lg font-medium text-gray-300 mb-8">
+            Trusted by leading companies
+          </h3>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {clientLogos.map((logo, index) => (
               <div 
                 key={index}
-                className="text-xl md:text-2xl font-bold text-sidify-primary/30 hover:text-sidify-accent transition-colors"
+                className="text-xl md:text-2xl font-bold text-gray-400 hover:text-sidify-accent transition-colors"
               >
                 {logo}
               </div>

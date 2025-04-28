@@ -29,7 +29,6 @@ const Index = () => {
     };
     
     updateScroll();
-    
     window.addEventListener('scroll', updateScroll);
     
     return () => {
@@ -38,9 +37,7 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen relative">
-      <div className="fixed inset-0 bg-gradient-hero -z-10"></div>
-      
+    <div className="min-h-screen relative bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-950">
       <div className="fixed blur-pattern top-[20%] left-[10%] opacity-70 -z-10"></div>
       <div className="fixed blur-pattern bottom-[10%] right-[5%] opacity-50 -z-10"></div>
       <div className="fixed blur-pattern bottom-[40%] left-[30%] opacity-20 -z-10"></div>

@@ -1,96 +1,169 @@
+import { useState, useEffect, useRef } from "react";
+import Hamburger from "hamburger-react";
+import { Button } from "@/components/ui/button";
 
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+const navItems = [
+  { id: "services", label: "Services" },
+  { id: "portfolio", label: "Portfolio" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
+];
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
 
-  // Handle scroll effect
+  // 1) Toggle glassmorphism on scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Smooth scroll to section
-  const scrollToSection = (sectionId: string) => {
+  // 2) Click-outside to close mobile menu
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: MouseEvent) => {
+      const tgt = e.target as Node;
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(tgt) &&
+        toggleRef.current &&
+        !toggleRef.current.contains(tgt)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [isOpen]);
+
+  // 3) Smooth scroll + close
+  const scrollTo = (id: string) => {
     setIsOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  // 4) Dynamic colors
+  const textColor = scrolled ? "text-sidify-primary" : "text-white";
+  const iconColor = scrolled ? "#0D9488" : "#FFFFFF";
+
   return (
-    <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 shadow-md backdrop-blur-sm' : 'bg-transparent'
+    <header
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/70 shadow-md backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <div className="flex items-center">
-          <a href="#" className="text-sidify-primary font-bold text-xl md:text-2xl">
-            Sidify<span className="text-sidify-accent">Solutions</span>
-          </a>
-        </div>
+        <a href="#" className="flex items-center gap-2">
+          <svg
+            className={`w-8 h-8 ${
+              scrolled ? "text-sidify-accent" : "text-white"
+            }`}
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M16 2L2 16l14 14 14-14L16 2zm0 5.5l9.5 9.5L16 26.5 6.5 17 16 7.5z"
+            />
+          </svg>
+          <span className={`text-xl font-bold ${textColor}`}>
+            Sidify
+            <span className="text-sidify-accent">Solutions</span>
+          </span>
+        </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <a onClick={() => scrollToSection('services')} className="text-sidify-primary hover:text-sidify-accent font-medium text-sm cursor-pointer transition-colors">Services</a>
-          <a onClick={() => scrollToSection('portfolio')} className="text-sidify-primary hover:text-sidify-accent font-medium text-sm cursor-pointer transition-colors">Portfolio</a>
-          <a onClick={() => scrollToSection('testimonials')} className="text-sidify-primary hover:text-sidify-accent font-medium text-sm cursor-pointer transition-colors">Testimonials</a>
-          <a onClick={() => scrollToSection('about')} className="text-sidify-primary hover:text-sidify-accent font-medium text-sm cursor-pointer transition-colors">About</a>
-          <a onClick={() => scrollToSection('contact')} className="text-sidify-primary hover:text-sidify-accent font-medium text-sm cursor-pointer transition-colors">Contact</a>
-          <Button variant="default" className="bg-sidify-accent hover:bg-sidify-accent/90" onClick={() => scrollToSection('contact')}>
-            Get a Free Consultation
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className="relative group px-3 py-2 overflow-hidden"
+            >
+              <span className={`relative z-10 font-medium ${textColor}`}>
+                {item.label}
+              </span>
+              <span className="absolute left-0 bottom-0 h-0.5 w-full bg-sidify-accent scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+            </button>
+          ))}
+          <Button
+            onClick={() => scrollTo("contact")}
+            className="bg-gradient-to-r from-sidify-accent to-blue-500 text-white shadow-lg hover:shadow-sidify-accent/30 transition-all"
+          >
+            Free Consultation
           </Button>
         </nav>
 
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-sidify-primary hover:text-sidify-accent"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* Mobile Toggle (no nested <button>) */}
+        <div ref={toggleRef} className="md:hidden">
+          <Hamburger
+            toggled={isOpen}
+            toggle={setIsOpen}
+            size={24}
+            color={iconColor}
+            label="Show menu"
+          />
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a onClick={() => scrollToSection('services')} className="text-sidify-primary hover:text-sidify-accent font-medium py-2 cursor-pointer">Services</a>
-            <a onClick={() => scrollToSection('portfolio')} className="text-sidify-primary hover:text-sidify-accent font-medium py-2 cursor-pointer">Portfolio</a>
-            <a onClick={() => scrollToSection('testimonials')} className="text-sidify-primary hover:text-sidify-accent font-medium py-2 cursor-pointer">Testimonials</a>
-            <a onClick={() => scrollToSection('about')} className="text-sidify-primary hover:text-sidify-accent font-medium py-2 cursor-pointer">About</a>
-            <a onClick={() => scrollToSection('contact')} className="text-sidify-primary hover:text-sidify-accent font-medium py-2 cursor-pointer">Contact</a>
-            <Button variant="default" className="bg-sidify-accent hover:bg-sidify-accent/90 w-full" onClick={() => scrollToSection('contact')}>
-              Get a Free Consultation
-            </Button>
+        <div
+          ref={mobileMenuRef}
+          className="
+      md:hidden 
+      absolute top-full inset-x-4 mt-2 
+      bg-white/90 backdrop-blur-lg 
+      shadow-xl 
+      rounded-b-xl overflow-hidden 
+      border-2 border-sidify-accent/20 
+      animate-fade-in-up
+    "
+        >
+          <nav className="flex flex-col gap-2 px-4 py-6">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="
+            w-full 
+            text-lg font-semibold text-sidify-primary 
+            uppercase tracking-wide text-center 
+            py-3 px-4 rounded-lg 
+            hover:bg-sidify-accent/10 
+            transition-colors
+          "
+              >
+                {item.label}
+              </button>
+            ))}
+            <div className="mt-4">
+              <Button
+                onClick={() => scrollTo("contact")}
+                className="
+            w-full 
+            py-3 
+            bg-sidify-accent hover:bg-sidify-accent/90 
+            text-white font-semibold 
+            rounded-lg 
+            transition-colors
+          "
+              >
+                Free Consultation
+              </Button>
+            </div>
           </nav>
         </div>
       )}
     </header>
   );
-};
-
-export default Navbar;
+}
