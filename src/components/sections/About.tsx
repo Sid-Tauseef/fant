@@ -4,29 +4,24 @@ import { motion } from "framer-motion";
 
 const teamMembers = [
   {
-    name: "Alex Thompson",
+    name: "Siddiqui Tanveer",
     role: "Founder & CEO",
-    bio: "10+ years of experience in web development and software architecture",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    bio: "4+ years of experience in web development and software architecture",
+    image: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746123782/sidify-solutions/tanveer_s4fano.jpg"
+  },
+  
+  {
+    name: "Siddiqui Tauseef",
+    role: "Founder & CEO",
+    bio: "4+ years of experience in web development and software architecture",
+    image: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746125794/sidify-solutions/tauseef_kswufq.jpg"
   },
   {
-    name: "Jessica Wong",
-    role: "Lead Designer",
-    bio: "Award-winning UI/UX designer with expertise in digital products",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80"
+    name: "Siddiqui Hammad",
+    role: "Senior Developer",
+    bio: "5+ years of experience in web development and software architecture",
+    image: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746125021/sidify-solutions/hammad_kgiekb.jpg"
   },
-  {
-    name: "David Miller",
-    role: "Technical Director",
-    bio: "Full-stack developer specializing in React and Node.js ecosystems",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
-  },
-  {
-    name: "Sophia Chen",
-    role: "Mobile Developer",
-    bio: "Expert in native and cross-platform mobile application development",
-    image: "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80"
-  }
 ];
 
 
@@ -68,7 +63,7 @@ const About = () => {
                 Our Journey
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                Founded in 2018, Sidify Solutions began with a simple mission: to help businesses unlock their digital potential through thoughtfully crafted technology solutions.
+                Founded in 2024, Sidify Solutions began with a simple mission: to help businesses unlock their digital potential through thoughtfully crafted technology solutions.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 We believe that great software is born at the intersection of technical excellence and human-centered design. Our approach combines cutting-edge development practices with a deep understanding of user needs.
@@ -77,7 +72,7 @@ const About = () => {
             
             <div className="flex items-center gap-4">
               <div className="flex-1 h-px bg-gray-700"></div>
-              <span className="text-gray-400 text-sm">EST. 2018</span>
+              <span className="text-gray-400 text-sm">EST. 2024</span>
               <div className="flex-1 h-px bg-gray-700"></div>
             </div>
           </motion.div>

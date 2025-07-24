@@ -1,39 +1,25 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+
+import { useState, useEffect } from 'react';
+import { useForm, ValidationError } from "@formspree/react";
+import { motion } from "framer-motion";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
-  };
-  
+  // Replace with your Formspree form ID
+  const [state, handleSubmit] = useForm("xgvkaaea");
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (state.succeeded && !showSuccess) {
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    }
+  }, [state.succeeded, showSuccess]);
+
   return (
     <section id="contact" className="relative py-20 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -58,7 +44,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="backdrop-blur-xl bg-white/5 rounded-2xl p-8 border border-white/10 shadow-2xl"
           >
-            {isSubmitted ? (
+            {showSuccess ? (
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -87,11 +73,17 @@ const Contact = () => {
                       Your Name
                     </label>
                     <Input
+                      id="name"
+                      type="text"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
                       placeholder="Enter your name"
                       className="w-full bg-white/5 border-white/10 focus:ring-2 focus:ring-cyan-400"
+                    />
+                    <ValidationError
+                      prefix="Name"
+                      field="name"
+                      errors={state.errors}
+                      className="text-red-400 text-sm mt-1"
                     />
                   </div>
 
@@ -100,12 +92,17 @@ const Contact = () => {
                       Email Address
                     </label>
                     <Input
+                      id="email"
                       type="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
                       placeholder="hello@example.com"
                       className="w-full bg-white/5 border-white/10 focus:ring-2 focus:ring-purple-400"
+                    />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="text-red-400 text-sm mt-1"
                     />
                   </div>
 
@@ -114,29 +111,37 @@ const Contact = () => {
                       Your Message
                     </label>
                     <Textarea
+                      id="message"
                       name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={5}
                       placeholder="Describe your project..."
                       className="w-full bg-white/5 border-white/10 focus:ring-2 focus:ring-cyan-400"
+                      rows={5}
+                    />
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      className="text-red-400 text-sm mt-1"
                     />
                   </div>
                 </div>
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
                   className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white transition-all"
                 >
-                  {isSubmitting ? 'Sending...' : 'Launch Project'}
+                  {state.submitting ? 'Sending...' : 'Launch Project'}
                 </Button>
               </form>
             )}
           </motion.div>
 
-          {/* Contact Information */}
-          <motion.div 
+          {/* Rest of the contact information remains unchanged */}
+          {/* ... */}
+
+            {/* Contact Information */}
+            <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="space-y-8 lg:pl-12"
@@ -148,12 +153,12 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {[
-                  { icon: Mail, title: 'Email', content: 'contact@sidifysolutions.com' },
-                  { icon: Phone, title: 'Phone', content: '+1 (555) 123-4567' },
+                  { icon: Mail, title: 'Email', content: 'contact.sidifysolutions@gmail.com' },
+                  { icon: Phone, title: 'Phone', content: '+91 81699 77647' },
                   { 
                     icon: MapPin, 
                     title: 'Office', 
-                    content: '123 Innovation Drive\nSan Francisco, CA 94103' 
+                    content: 'Plot No 43/U/1-Road No4,\n Near Geeta Vikas School, Shivaji Nagar,\n Govandi, Mumbai 400043.' 
                   }
                 ].map((item, index) => (
                   <motion.div 
@@ -198,13 +203,13 @@ const Contact = () => {
                 Collaboration Hours
               </h3>
               <p className="text-gray-300">
-                Mon-Fri: 9AM - 6PM PST<br />
-                Sat-Sun: Closed
+                Mon-Sun: 9AM - 6PM PST<br />
               </p>
             </div>
           </motion.div>
         </div>
       </div>
+          
 
       {/* Background Elements */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10"></div>

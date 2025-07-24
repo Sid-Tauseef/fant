@@ -1,26 +1,27 @@
 const testimonials = [
   {
-    content: "Sidify Solutions transformed our outdated website into a modern, responsive platform that our customers love. Their attention to detail and technical expertise exceeded our expectations.",
-    author: "Sarah Johnson",
-    position: "Marketing Director, TechCorp",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"
+    content: "Sidify team, our Mozzam Arts gallery looked very flat online. Now visitors keep checking it out and we’re getting enquiries every day!",
+    author: "Arsalan Siddiqui",
+    position: "Creative Director, Mozzam Interior Studio",
+    avatar: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746175929/sidify-solutions/mozzamicon_u1qxpe.png"
   },
   {
-    content: "Working with the Sidify team was a game-changer for our startup. They built our mobile app from concept to launch in record time, and their ongoing support has been exceptional.",
-    author: "Michael Chen",
-    position: "CEO, HealthSync",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"
+    content: "Scheduling used to give me a real headache with Mumbai and overseas clients. OffStream sorted it—now bookings happen with just one click!",
+    author: "Siddharth Mehta",
+    position: "Director, Consulting Group",
+    avatar: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746175929/sidify-solutions/booknowicon_w3hesu.png"
   },
   {
-    content: "The e-commerce platform developed by Sidify doubled our online sales within the first quarter. Their strategic approach to UX design and performance optimization made all the difference.",
-    author: "Emma Rodriguez",
-    position: "Operations Manager, StyleHub",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&h=150&q=80"
+    content: "Managing certifications for hundreds of engineers was like juggling plates. Sidify’s dashboard sorted it all—audits are now a total breeze!",
+    author: "Nandini Reddy",
+    position: "Head of Operations, SkillsTraining India",
+    avatar: "https://res.cloudinary.com/dtjgdz8zn/image/upload/v1746175929/sidify-solutions/skillicon_nyzt2j.png"
   }
 ];
 
+
 const clientLogos = [
-  "TechCorp", "HealthSync", "StyleHub", "GreenEnergy", "FinanceFlow"
+  "MozzamArts", "FreelanceResolve", "DiabeticHealth", "NewsInsights", "MastersAcademy"
 ];
 
 const Testimonials = () => {
